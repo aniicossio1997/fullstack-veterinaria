@@ -1,6 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 ./Frontend-angular/.angular
 ./Frontend-angular/.vscode
+./Frontend-angular/package-lock.json
 # Compiled output
 ./Frontend-angular/dist
 ./Frontend-angular/tmp
