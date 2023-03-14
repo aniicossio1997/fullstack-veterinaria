@@ -1,0 +1,44 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+./Frontend-angular/.angular
+./Frontend-angular/.vscode
+# Compiled output
+./Frontend-angular/dist
+./Frontend-angular/tmp
+./Frontend-angular/out-tsc
+./Frontend-angular/bazel-out
+
+# Node
+./Frontend-angular/node_modules
+./Frontend-angular/npm-debug.log
+./Frontend-angular/yarn-error.log
+
+# IDEs and editors
+./Frontend-angular/.idea/
+./Frontend-angular/.project
+./Frontend-angular/.classpath
+./Frontend-angular/.c9/
+./Frontend-angular/*.launch
+./Frontend-angular/.settings/
+./Frontend-angular/*.sublime-workspace
+./Frontend-angular/.angular/
+# Visual Studio Code
+./Frontend-angular/.vscode/
+./Frontend-angular/.vscode/*
+./Frontend-angular/!.vscode/settings.json
+./Frontend-angular/!.vscode/tasks.json
+./Frontend-angular/!.vscode/launch.json
+./Frontend-angular/!.vscode/extensions.json
+./Frontend-angular/.history/*
+
+# Miscellaneous
+./Frontend-angular/.angular/cache
+./Frontend-angular/.sass-cache/
+./Frontend-angular/connect.lock
+./Frontend-angular/coverage
+./Frontend-angular/libpeerconnection.log
+./Frontend-angular/testem.log
+./Frontend-angular/typings
+
+# System files
+./Frontend-angular/.DS_Store
+./Frontend-angular/Thumbs.db
