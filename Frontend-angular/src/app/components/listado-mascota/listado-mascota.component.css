@@ -1,0 +1,48 @@
+table {
+  width: 100%;
+}
+td,th{
+  width: 15%;
+}
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.container-children >*{
+  width: 10%;
+}
+.container-action >*{
+  width: 30% !important;
+}
+.container-action td {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between !important;
+}
+mat-icon{
+  cursor: pointer;
+  transition-duration: 0.5s;
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
+.delete{
+  color: #e15639;
+}
+.delete:hover{
+  border: 1px solid #e15639;
+}
+.edit{
+  color: #1878B0;
+}
+.edit:hover{
+  border: 1px solid #1878B0;
+}
+.visibility:hover{
+  border:1px solid rgb(32, 32, 32);
+}
+.btn-add{
+  font-size: 12px;
+  line-height: 28px;
+
+}
+
