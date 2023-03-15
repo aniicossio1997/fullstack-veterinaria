@@ -15,18 +15,7 @@ export interface PeriodicElement {
   weight: number;
   symbol: string;
 }
-const listadoMascota: Mascota[] = [
-  {id: 1, name: 'Hydrogen', peso: 1.0079, raza: 'H',edad:2, color:"blue"},
-  {id: 2, name: 'Helium', peso: 4.0026, raza: 'He',edad:4, color:"blue"},
-  {id: 3, name: 'Lithium', peso: 6.941, raza: 'Li',edad:2, color:"blue"},
-  {id: 4, name: 'Beryllium', peso: 9.0122, raza: 'Be',edad:2, color:"blue"},
-  {id: 5, name: 'Boron', peso: 10.811, raza: 'B',edad:2, color:"blanco"},
-  {id: 6, name: 'Carbon', peso: 12.0107, raza: 'C',edad:2, color:"blanco"},
-  {id: 7, name: 'Nitrogen', peso: 14.0067, raza: 'N',edad:1, color:"blanco"},
-  {id: 8, name: 'Oxygen', peso: 15.9994, raza: 'O',edad:3, color:"blanco"},
-  {id: 9, name: 'Fluorine', peso: 18.9984, raza: 'F',edad:2, color:"blue"},
-  {id: 10, name: 'Neon', peso: 20.1797, raza: 'Ne',edad:2, color:"blue"},
-];
+
 
 @Component({
   selector: 'app-listado-mascota',
@@ -48,6 +37,7 @@ export class ListadoMascotaComponent  implements AfterViewInit, OnInit{
 
   ngAfterViewInit() {
     this.mascotas.paginator = this.paginator;
+    if(this.mascotas.data.length < 1) return;
     this.paginator._intl.itemsPerPageLabel='Item por pagina';
     this.mascotas.sort = this.sort;
   }
@@ -59,22 +49,41 @@ export class ListadoMascotaComponent  implements AfterViewInit, OnInit{
       this.mascotas.paginator.firstPage();
     }
   }
-  eliminarMascota(){
+  eliminarMascota(id:number){
     this.loading=true;
     setTimeout(() => {
       this.loading=false;
-      this._snackBar.open('la Mascota fue eliminada con exito','',{
-        duration:2000,
-        panelClass: ['green-snackbar']
 
+      this._mascotaService.deleteMascota(id).subscribe(()=>{
+        this.mensajeExito();
+        this._mascotaService.getMascotas();
       })
     }, 2000);
-
-
   }
+
+  private mensajeExito():void{
+    this._snackBar.open('la Mascota fue eliminada con exito','',{
+      duration:2000,
+      panelClass: ['green-snackbar']
+
+    })
+  }
+  // handletMascotas(){
+  //   this._mascotaService.getMascotas().subscribe(
+  //     mascotas=> {this.mascotas.data=mascotas},
+  //     error => alert('error al conectar la API')
+  //   )
+  // }
   handletMascotas(){
-    this._mascotaService.getMascotas().subscribe(
-      mascotas=> {this.mascotas.data=mascotas}
-    )
+    this.loading=true;
+    this._mascotaService.getMascotas().subscribe({
+        next: (mascotas) => this.mascotas.data=mascotas,
+        error: (e) => alert('error al conectar la API'),
+        complete: () => console.log('complete')
+    })
+    setTimeout(() => {
+      this.loading=false;
+    }, 1000);
+
   }
 }

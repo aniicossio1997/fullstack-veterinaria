@@ -16,4 +16,10 @@ export class MascotaService {
   getMascotas():Observable<Mascota[]>{
     return this.http.get<Mascota[]>(`${this.url}${this._uri}`)
   }
+  getMascota(id:number):Observable<Mascota>{
+    return this.http.get<Mascota>(`${this.url}${this._uri}/${id}`);
+  }
+  deleteMascota(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.url}${this._uri}/${id}`);
+  }
 }
