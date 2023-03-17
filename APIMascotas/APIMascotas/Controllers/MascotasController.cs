@@ -63,7 +63,43 @@ namespace APIMascotas.Controllers
                 return BadRequest(ex.Message);
             }
         }
-    
-   
+        [HttpPost]
+        public async Task<IActionResult> Post(Mascota mascota)
+        {
+            try {
+            
+                mascota.DateAt= DateTime.Now;
+                _context.Add(mascota);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("Get", new {id=mascota.Id}, mascota);
+            } catch(Exception ex) {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Put(int id, Mascota mascota)
+        {
+            try {
+                if (id != mascota.Id) return BadRequest();
+
+                var mascotaItem = await _context.Mascotas.FindAsync(id);
+
+                if (mascotaItem == null) return NotFound();
+
+                mascotaItem.Name = mascota.Name;
+                mascotaItem.Peso = mascota.Peso;
+                mascotaItem.Edad = mascota.Edad;
+                mascotaItem.Color = mascota.Color;
+                mascotaItem.Raza = mascota.Raza;
+
+                await _context.SaveChangesAsync();
+
+                return Ok();
+            }
+            catch(Exception e) {
+            return BadRequest(e.Message);
+            }
+        }
     }
 }
